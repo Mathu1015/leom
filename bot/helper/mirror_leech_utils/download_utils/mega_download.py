@@ -2,7 +2,6 @@
 from asyncio import Event
 from secrets import token_hex
 
-from mega import MegaApi, MegaError, MegaRequest, MegaListener, MegaTransfer
 from aiofiles.os import makedirs
 
 from bot import (
