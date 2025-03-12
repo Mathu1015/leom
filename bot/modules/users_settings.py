@@ -131,8 +131,10 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
         buttons.callback("Close", f"userset {user_id} close", "footer")
         button = buttons.column(2)
     elif key == "leech":
-        if user_dict.get("as_doc", False) or (
-            "as_doc" not in user_dict and config_dict["AS_DOCUMENT"]
+        if (
+            user_dict.get("as_doc", False)
+            or "as_doc" not in user_dict
+            and config_dict["AS_DOCUMENT"]
         ):
             ltype = "DOCUMENT"
             buttons.callback("Send As Media", f"userset {user_id} doc")
@@ -259,7 +261,7 @@ async def update_user_settings(
     user_id = query.from_user.id
     thumbnail = f"Thumbnails/{user_id}.jpg"
     if not ospath.exists(thumbnail):
-        thumbnail = "https://graph.org/file/73ae908d18c6b38038071.jpg"
+        thumbnail = "https://telegra.ph/file/27061ef540f186a18f66b.png"
     await edit_message(query.message, msg, button, thumbnail)
 
 
@@ -269,7 +271,7 @@ async def user_settings(_, message):
     user_id = message.from_user.id
     thumbnail = f"Thumbnails/{user_id}.jpg"
     if not ospath.exists(thumbnail):
-        thumbnail = "https://graph.org/file/73ae908d18c6b38038071.jpg"
+        thumbnail = "https://telegra.ph/file/27061ef540f186a18f66b.png"
     x = await send_message(message, msg, button, thumbnail)
     await five_minute_del(message)
     await delete_message(x)
