@@ -449,7 +449,7 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
     if metadata_key and dirpath and is_mkv(file_):
         file_ = await change_metadata(file_, dirpath, metadata_key)
 
-    file_ = re_sub(r"^www\S+\s*[-_]*\s*",SUNNXT:SNXT|- Telly|DDH|Tam +:Tamil\s:1|Tam]:Tamil]|Hin]: Hindi]|Tel +:Telugu\s:1|Hin +:Hindi\s:1|Mal +:Malayalam\s:1|Kan +:Kannada\s:1|Kor]:Korean]\s:1|Eng +: English|Jap]: Japanese]|Esubs|Eng]:English]|_White_|- ESub|@World4kMovie - |- Leyon|ENG: English| Esub|.JIOHS.WEB-DL.Multi.Audio.DDP.5.1: DSNP WEB-DL [Tamil + Telugu + Hindi + English (DD+ 5.1 - 192kbps)] |.H265: ×265|.H264: ×264|RJTV: RAJTV|_Esub_|.JIOHS.: DSNP |ANToNi|.MX.WEB-DL.Multi.Audio.AAC.2.0: MX WEB-DL [Tamil + Telugu + Hindi (AAC 2.0 - 127kbps)] |.Multi.Audio.AAC.2.0: [Tamil + Telugu + Hindi + English (AAC 2.0 - 128kbps)] | Tamil.AAC.2.0.: [Tamil (AAC 2.0 - 128kbps)] |.Tamil.DDP.5.1.: [Tamil (DD+5.1 - 192kbps)] |, "", file_)
+    file_ = re_sub(r"^www\S+\s*[-_]*\s*", "", file_)
     if remname:
         if not remname.startswith("|"):
             remname = f"|{remname}"
@@ -468,7 +468,7 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
                 __new_file_name = re_sub(args[0], "", __new_file_name)
         file_ = __new_file_name + ospath.splitext(file_)[1]
         LOGGER.info(f"New Filename : {file_}")
-
+        remname = "SUNNXT:SNXT|- Telly|DDH|Tam +:Tamil\s:1|Tam]:Tamil]|Hin]: Hindi]|Tel +:Telugu\s:1|Hin +:Hindi\s:1|Mal +:Malayalam\s:1|Kan +:Kannada\s:1|Kor]:Korean]\s:1|Eng +: English|Jap]: Japanese]|Esubs|Eng]:English]|_White_|- ESub|@World4kMovie - |- Leyon|ENG: English| Esub|.JIOHS.WEB-DL.Multi.Audio.DDP.5.1: DSNP WEB-DL [Tamil + Telugu + Hindi + English (DD+ 5.1 - 192kbps)] |.H265: ×265|.H264: ×264|RJTV: RAJTV|_Esub_|.JIOHS.: DSNP |ANToNi|.MX.WEB-DL.Multi.Audio.AAC.2.0: MX WEB-DL [Tamil + Telugu + Hindi (AAC 2.0 - 127kbps)] |.Multi.Audio.AAC.2.0: [Tamil + Telugu + Hindi + English (AAC 2.0 - 128kbps)] | Tamil.AAC.2.0.: [Tamil (AAC 2.0 - 128kbps)] |.Tamil.DDP.5.1.: [Tamil (DD+5.1 - 192kbps)] |"
     nfile_ = file_
     if prefix:
         nfile_ = prefix.replace(r"\s", " ") + file_
