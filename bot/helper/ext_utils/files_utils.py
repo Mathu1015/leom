@@ -441,8 +441,8 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
     user_dict = user_data.get(user_id, {})
     prefix = user_dict.get("prefix", "@World4kMovie -\s")
     remname = user_dict.get("remname", "")
-    remname2 = user_dict.get("remname2", "")
-    remname3 = user_dict.get("remname3", "")
+    remname2 = user_dict.get("remname", "")
+    remname3 = user_dict.get("remname", "")
     suffix = user_dict.get("suffix", "- ESub - Leyon\s")
     lcaption = user_dict.get("lcaption", "")
     metadata_key = user_dict.get("metadata", "LeyonRipz") or config_dict["METADATA_KEY"]
@@ -452,15 +452,11 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
         file_ = await change_metadata(file_, dirpath, metadata_key)
  
     file_ = re_sub(r"^www\S+\s*[-_]*\s*", "", file_)
-    if remname, remname2, remname3:
-        if not remname.startswith("|"), remname2.startswith("|"), remname3.startswith("|"):
+    if remname:
+        if not remname.startswith("|"):
             remname = f"|{remname}"
-            remname2 = f"|{remname2}"
-            remname3 = f"|{remname3}"
         remname = remname.replace(r"\s", " ")
-        remname2 = remname2.replace(r"\s", " ")
-        remname3 = remname3.replace(r"\s", " ")
-        slit = remname.split("|"), remname2.split("|"), remname3.split("|")
+        slit = remname.split("|")
         __new_file_name = ospath.splitext(file_)[0]
         for rep in range(1, len(slit)):
             args = slit[rep].split(":")
