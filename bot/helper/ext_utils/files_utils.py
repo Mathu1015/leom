@@ -439,18 +439,16 @@ async def split_file(
 
 async def process_file(file_, user_id, dirpath=None, is_mirror=False):
     user_dict = user_data.get(user_id, {})
-    prefix = user_dict.get("prefix", "@World4kMovie -\s")
+    prefix = user_dict.get("prefix", "")
     remname = user_dict.get("remname", "")
-    remname2 = user_dict.get("remname", "")
-    remname3 = user_dict.get("remname", "")
-    suffix = user_dict.get("suffix", "- ESub - Leyon\s")
+    suffix = user_dict.get("suffix", "")
     lcaption = user_dict.get("lcaption", "")
-    metadata_key = user_dict.get("metadata", "LeyonRipz") or config_dict["METADATA_KEY"]
+    metadata_key = user_dict.get("metadata", "") or config_dict["METADATA_KEY"]
     prefile_ = file_
 
     if metadata_key and dirpath and is_mkv(file_):
         file_ = await change_metadata(file_, dirpath, metadata_key)
- 
+
     file_ = re_sub(r"^www\S+\s*[-_]*\s*", "", file_)
     if remname:
         if not remname.startswith("|"):
@@ -498,7 +496,7 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
             if "." in file_
             else f"{file_}{suffix}"
         )
-    
+
     cap_mono = nfile_
     if lcaption and dirpath and not is_mirror:
 

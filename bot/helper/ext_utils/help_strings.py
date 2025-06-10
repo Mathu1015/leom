@@ -139,16 +139,6 @@ uset_display_dict = {
     "remname": [
         "Filename Remname is a combination of regex patterns used for removing or manipulating the filename of the leech files.",
         "Send filename remname. Timeout: 60 sec",
-
-    ],
-    "remname2": [
-        "Filename Remname 2 is a combination of regex patterns used for removing or manipulating the filename of the leech files.",
-        "Send filename remname2. Timeout: 60 sec",
-
-     ],
-    "remname3": [
-        "Filename Remname 3 is a combination of regex patterns used for removing or manipulating the filename of the leech files.",
-        "Send filename remname3. Timeout: 60 sec",
     ],
     "metadata": [
         "Metadata will change MKV video files including all audio, streams, and subtitle titles.",
