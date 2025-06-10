@@ -452,49 +452,11 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
         file_ = await change_metadata(file_, dirpath, metadata_key)
  
     file_ = re_sub(r"^www\S+\s*[-_]*\s*", "", file_)
-    if remname:
-        if not remname.startswith("|"):
-            remname = f"|{remname}"
-        remname = remname.replace(r"\s", " ")
-        slit = remname.split("|")
-        __new_file_name = ospath.splitext(file_)[0]
-        for rep in range(1, len(slit)):
-            args = slit[rep].split(":")
-            if len(args) == 3:
-                __new_file_name = re_sub(
-                    args[0], args[1], __new_file_name, int(args[2])
-                )
-            elif len(args) == 2:
-                __new_file_name = re_sub(args[0], args[1], __new_file_name)
-            elif len(args) == 1:
-                __new_file_name = re_sub(args[0], "", __new_file_name)
-        file_ = __new_file_name + ospath.splitext(file_)[1]
-        LOGGER.info(f"New Filename : {file_}")
-
-        if remname2:
-        if not remname2.startswith("|"):
-            remname2 = f"|{remname2}"
-        remname2 = remname2.replace(r"\s", " ")
-        slit = remname2.split("|")
-        __new_file_name = ospath.splitext(file_)[0]
-        for rep in range(1, len(slit)):
-            args = slit[rep].split(":")
-            if len(args) == 3:
-                __new_file_name = re_sub(
-                    args[0], args[1], __new_file_name, int(args[2])
-                )
-            elif len(args) == 2:
-                __new_file_name = re_sub(args[0], args[1], __new_file_name)
-            elif len(args) == 1:
-                __new_file_name = re_sub(args[0], "", __new_file_name)
-        file_ = __new_file_name + ospath.splitext(file_)[1]
-        LOGGER.info(f"New Filename : {file_}")
-
-    if remname3:
-        if not remname3.startswith("|"):
-            remname3 = f"|{remname3}"
-        remname3 = remname3.replace(r"\s", " ")
-        slit = remname3.split("|")
+    if remname + remname2 + remname3:
+        if not remname.startswith("|"): + remname2.startswith("|"): + remname3.startswith("|"):
+            remname = f"|{remname}" + remname2 = f"|{remname2}" + remname3 = f"|{remname3}"
+        remname = remname.replace(r"\s", " ") + remname2 = remname2.replace(r"\s", " ") + remname3 = remname3.replace(r"\s", " ")
+        slit = remname.split("|") + slit = remname2.split("|") + slit = remname3.split("|")
         __new_file_name = ospath.splitext(file_)[0]
         for rep in range(1, len(slit)):
             args = slit[rep].split(":")
