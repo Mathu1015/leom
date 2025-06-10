@@ -41,8 +41,6 @@ fname_dict = {
     "prefix": "Prefix",
     "suffix": "Suffix",
     "remname": "Remname",
-    "remname2": "Remname2",
-    "remname3": "Remname3",
     "ldump": "Dump",
     "user_tds": "User Custom TDs",
     "lcaption": "Caption",
@@ -70,8 +68,6 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
                 "prefix",
                 "suffix",
                 "remname",
-                "remname2",
-                "remname3",
                 "ldump",
                 "yt_opt",
                 "media_group",
@@ -104,12 +100,6 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
 
         buttons.callback("Remname", f"userset {user_id} remname")
         remname = user_dict.get("remname", "Not Exists")
-
-        buttons.callback("Remname2", f"userset {user_id} remname2")
-        remname2 = user_dict.get("remname2", "Not Exists")
-
-        buttons.callback("Remname3", f"userset {user_id} remname3")
-        remname3 = user_dict.get("remname3", "Not Exists")
 
         buttons.callback("Metadata", f"userset {user_id} metadata")
         metadata = user_dict.get("metadata", "Not Exists")
