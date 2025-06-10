@@ -449,7 +449,7 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
     if metadata_key and dirpath and is_mkv(file_):
         file_ = await change_metadata(file_, dirpath, metadata_key)
 
-    file_ = re_sub(r"^www\S+\s*[-_]*\s*", "", file_)
+    file_ = re_sub(r"^www\S+\s*[-_]*\s*", "- Telly|DDH|_White_|-XtRoN|XtRoN_Esub_", file_)
     if remname:
         if not remname.startswith("|"):
             remname = f"|{remname}"
@@ -496,8 +496,6 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
             if "." in file_
             else f"{file_}{suffix}"
         )
-        
-    remname = "SUNNXT:SNXT|- Telly|DDH|Tam +:Tamil\s:1|Tam]:Tamil]|Hin]: Hindi]|Tel +:Telugu\s:1|Hin +:Hindi\s:1|Mal +:Malayalam\s:1|Kan +:Kannada\s:1|Kor]:Korean]\s:1|Eng +: English|Jap]: Japanese]|Esubs|Eng]:English]|_White_|- ESub|@World4kMovie - |- Leyon|ENG: English| Esub|-XtRoN|XtRoN|.AMZN.WEB-DL.Multi.Audio.DDP.5.1.: AMZN WEB-DL [Tamil + Telugu + Hindi + Mandarin (DD+2.0 - 224kbps)] |.JIOHS.WEB-DL.Multi.Audio.DDP.5.1: DSNP WEB-DL [Tamil + Telugu + Hindi + English (DD+ 5.1 - 192kbps)] |.H265:×265|.H264:×264|RJTV: RAJTV|_Esub_|.JIOHS.: DSNP |ANToNi|.MX.WEB-DL.Multi.Audio.AAC.2.0: MX WEB-DL [Tamil + Telugu + Hindi (AAC 2.0 - 127kbps)] |.Multi.Audio.AAC.2.0: [Tamil + Telugu + Hindi + English (AAC 2.0 - 128kbps)] |.Tamil.AAC.2.0.: [Tamil (AAC 2.0 - 128kbps)] | .Tamil.DDP.5.1.: Tamil (DD+5.1 - 192kbps)] |"
     
     cap_mono = nfile_
     if lcaption and dirpath and not is_mirror:
