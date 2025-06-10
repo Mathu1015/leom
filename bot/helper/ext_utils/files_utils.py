@@ -441,6 +441,8 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
     user_dict = user_data.get(user_id, {})
     prefix = user_dict.get("prefix", "@World4kMovie -\s")
     remname = user_dict.get("remname", "")
+    remname2 = user_dict.get("remname2", "")
+    remname3 = user_dict.get("remname3", "")
     suffix = user_dict.get("suffix", "- ESub - Leyon\s")
     lcaption = user_dict.get("lcaption", "")
     metadata_key = user_dict.get("metadata", "LeyonRipz") or config_dict["METADATA_KEY"]
@@ -455,6 +457,44 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
             remname = f"|{remname}"
         remname = remname.replace(r"\s", " ")
         slit = remname.split("|")
+        __new_file_name = ospath.splitext(file_)[0]
+        for rep in range(1, len(slit)):
+            args = slit[rep].split(":")
+            if len(args) == 3:
+                __new_file_name = re_sub(
+                    args[0], args[1], __new_file_name, int(args[2])
+                )
+            elif len(args) == 2:
+                __new_file_name = re_sub(args[0], args[1], __new_file_name)
+            elif len(args) == 1:
+                __new_file_name = re_sub(args[0], "", __new_file_name)
+        file_ = __new_file_name + ospath.splitext(file_)[1]
+        LOGGER.info(f"New Filename : {file_}")
+
+        if remname2:
+        if not remname2.startswith("|"):
+            remname2 = f"|{remname2}"
+        remname2 = remname2.replace(r"\s", " ")
+        slit = remname2.split("|")
+        __new_file_name = ospath.splitext(file_)[0]
+        for rep in range(1, len(slit)):
+            args = slit[rep].split(":")
+            if len(args) == 3:
+                __new_file_name = re_sub(
+                    args[0], args[1], __new_file_name, int(args[2])
+                )
+            elif len(args) == 2:
+                __new_file_name = re_sub(args[0], args[1], __new_file_name)
+            elif len(args) == 1:
+                __new_file_name = re_sub(args[0], "", __new_file_name)
+        file_ = __new_file_name + ospath.splitext(file_)[1]
+        LOGGER.info(f"New Filename : {file_}")
+
+    if remname3:
+        if not remname3.startswith("|"):
+            remname3 = f"|{remname3}"
+        remname3 = remname3.replace(r"\s", " ")
+        slit = remname3.split("|")
         __new_file_name = ospath.splitext(file_)[0]
         for rep in range(1, len(slit)):
             args = slit[rep].split(":")
