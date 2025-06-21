@@ -440,7 +440,7 @@ async def split_file(
 async def process_file(file_, user_id, dirpath=None, is_mirror=False):
     user_dict = user_data.get(user_id, {})
     prefix = user_dict.get("prefix", "")
-    remname = user_dict.get("remname", "")
+    remname = user_dict.get("remname", "SUNNXT:SNXT|- Telly|DDH|Tam +:Tamil\s:1|Tam]:Tamil]|Hin]: Hindi]|Tel +:Telugu\s:1|Hin +:Hindi\s:1|Mal +:Malayalam\s:1|Kan +:Kannada\s:1|Kor]:Korean]\s:1|Eng +: English|Jap]: Japanese]|Esubs|Eng]:English]|_White_|- ESub|@World4kMovie - |- Leyon|ENG: English| Esub|-XtRoN|XtRoN|.JIOHS.WEB-DL.Multi.Audio.DDP.5.1: DSNP WEB-DL [Tamil + Telugu + Hindi + English (DD+ 5.1 - 192kbps)] |.H265: ×265|.H264: ×264|RJTV: RAJTV|_Esub_|ANToNi|.MX.WEB-DL.Multi.Audio.AAC.2.0: MX WEB-DL [Tamil + Telugu + Hindi (AAC 2.0 - 127kbps)] |.Multi.Audio.AAC.2.0: [Tamil + Telugu + Hindi + English (AAC 2.0 - 128kbps)] |.Tamil.AAC.2.0.: [Tamil (AAC 2.0 - 128kbps)] | .Tamil.DDP.5.1.: Tamil (DD+5.1 - 192kbps)] |.EROS.WEB-DL.AAC.2.0.: EROS WEB-DL [Telugu (AAC 2.0 - 128kbps)] |- JeRi |.JIOHS.WEB-DL.AAC.2.0: DSNP WEB-DL [Tamil (AAC 2.0 - 128kbps)] |.JIOHS.: DSNP |")
     suffix = user_dict.get("suffix", "")
     lcaption = user_dict.get("lcaption", "")
     metadata_key = user_dict.get("metadata", "") or config_dict["METADATA_KEY"]
