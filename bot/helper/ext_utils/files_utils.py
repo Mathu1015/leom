@@ -441,7 +441,7 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
     user_dict = user_data.get(user_id, {})
     prefix = user_dict.get("prefix", "")
     remname = user_dict.get("remname", "")
-    remname2 = user_dict.get("remname2", "")
+    remname2 = user_dict.get("remname2", "2025:(2025)")
     suffix = user_dict.get("suffix", "")
     lcaption = user_dict.get("lcaption", "")
     metadata_key = user_dict.get("metadata", "") or config_dict["METADATA_KEY"]
