@@ -41,7 +41,6 @@ fname_dict = {
     "prefix": "Prefix",
     "suffix": "Suffix",
     "remname": "Remname",
-    "remname2": "Remname2",
     "ldump": "Dump",
     "user_tds": "User Custom TDs",
     "lcaption": "Caption",
@@ -69,7 +68,6 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
                 "prefix",
                 "suffix",
                 "remname",
-                "remname2",
                 "ldump",
                 "yt_opt",
                 "media_group",
@@ -102,9 +100,6 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
 
         buttons.callback("Remname", f"userset {user_id} remname")
         remname = user_dict.get("remname", "Not Exists")
-      
-        buttons.callback("Remname2", f"userset {user_id} remname2")
-        remname2 = user_dict.get("remname2", "Not Exists")
 
         buttons.callback("Metadata", f"userset {user_id} metadata")
         metadata = user_dict.get("metadata", "Not Exists")
@@ -119,7 +114,6 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
         text += f"<b>• Metadata:</b> <code>{metadata}</code>\n"
         text += f"<b>• Attachment:</b> <code>{attachment}</code>\n"
         text += f"<b>• Remname:</b> <code>{remname}</code>"
-        text += f"<b>• Remname2:</b> <code>{remname2}</code>"
         buttons.callback("Back", f"userset {user_id} back", "footer")
         buttons.callback("Close", f"userset {user_id} close", "footer")
         button = buttons.column(2)
@@ -218,7 +212,6 @@ async def get_user_settings(from_user, key=None, edit_type=None, edit_mode=None)
         elif key in [
             "prefix",
             "remname",
-            "remname2",
             "suffix",
             "lcaption",
             "ldump",
@@ -555,7 +548,7 @@ async def edit_user_settings(client, query):
         rfunc = partial(update_user_settings, query, data[2], "mirror")
         await event_handler(client, query, pfunc, rfunc)
         return None
-    if data[2] in ["prefix", "suffix", "remname", "remname2", "attachment", "metadata"]:
+    if data[2] in ["prefix", "suffix", "remname", "attachment", "metadata"]:
         handler_dict[user_id] = False
         await query.answer()
         edit_mode = len(data) == 4
@@ -585,7 +578,7 @@ async def edit_user_settings(client, query):
         if DATABASE_URL:
             await DbManager().update_user_data(user_id)
         return None
-    if data[2] in ["dprefix", "dsuffix", "dremname", "dremname2", "dmetadata", "dattachment"]:
+    if data[2] in ["dprefix", "dsuffix", "dremname", "dmetadata", "dattachment"]:
         handler_dict[user_id] = False
         await query.answer()
         update_user_ldata(user_id, data[2][1:], "")
