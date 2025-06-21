@@ -476,26 +476,6 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
         prefix = re_sub(r"<.*?>", "", prefix).replace(r"\s", " ")
         if not file_.startswith(prefix):
             file_ = f"{prefix}{file_}"
-            
-file_ = re_sub(r"^www\S+\s*[-_]*\s*", "", file_)
-    if remname:
-        if not remname.startswith("|"):
-            remname = f"|{remname}"
-        remname = remname.replace(r"\s", " ")
-        slit = remname.split("|")
-        __new_file_name = ospath.splitext(file_)[0]
-        for rep in range(1, len(slit)):
-            args = slit[rep].split(":")
-            if len(args) == 3:
-                __new_file_name = re_sub(
-                    args[0], args[1], __new_file_name, int(args[2])
-                )
-            elif len(args) == 2:
-                __new_file_name = re_sub(args[0], args[1], __new_file_name)
-            elif len(args) == 1:
-                __new_file_name = re_sub(args[0], "", __new_file_name)
-        file_ = __new_file_name + ospath.splitext(file_)[1]
-        LOGGER.info(f"New Filename : {file_}")
 
 file_ = re_sub(r"^www\S+\s*[-_]*\s*", "", file_)
     if remname2:
