@@ -441,7 +441,6 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
     user_dict = user_data.get(user_id, {})
     prefix = user_dict.get("prefix", "")
     remname = user_dict.get("remname", "")
-    remname2 = user_dict.get("remname2", "2025:(2025)")
     suffix = user_dict.get("suffix", "")
     lcaption = user_dict.get("lcaption", "")
     metadata_key = user_dict.get("metadata", "") or config_dict["METADATA_KEY"]
@@ -451,12 +450,11 @@ async def process_file(file_, user_id, dirpath=None, is_mirror=False):
         file_ = await change_metadata(file_, dirpath, metadata_key)
 
     file_ = re_sub(r"^www\S+\s*[-_]*\s*", "", file_)
-    if remname & remname2:
-        if not remname & remname2.startswith("|"):
+    if remname:
+        if not remname.startswith("|"):
             remname = f"|{remname}"
-            remname2 = f"|{remname2}"
-        remname & remname2 = remname & remname2.replace(r"\s", " ")
-        slit = remname & remname2.split("|")
+        remname = remname.replace(r"\s", " ")
+        slit = remname.split("|")
         __new_file_name = ospath.splitext(file_)[0]
         for rep in range(1, len(slit)):
             args = slit[rep].split(":")
